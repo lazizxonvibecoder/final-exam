@@ -312,7 +312,7 @@
       btn.disabled = true;
       btn.textContent = "Yuklanmoqda...";
 
-      fetch('/api/start', {
+      fetch('https://final-exam-production-b963.up.railway.app/api/start', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ firstName, lastName })
@@ -443,7 +443,7 @@
       btn.disabled = true;
       btn.textContent = "Yuborilmoqda...";
 
-      fetch('/api/submit', {
+      fetch('https://final-exam-production-b963.up.railway.app/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sessionId, answers })
