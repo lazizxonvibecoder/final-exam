@@ -1,9 +1,16 @@
 const express = require('express');
+const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
 const app = express();
+// Allow CORS for Vercel frontend
+app.use(cors({
+  origin: 'https://final-exam-three-topaz.vercel.app',
+  methods: ['GET', 'POST'],
+  credentials: false
+}));
 const PORT = 3000;
 
 app.use(express.json());
