@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yakuniy imtihon</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #1a73e8;
+      margin-bottom: 8px;
+      font-size: 1.8rem;
+    }
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 0.95rem;
+    }
+
+    /* Login screen */
+    #login-screen {
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      max-width: 450px;
+      margin: 60px auto;
+    }
+    #login-screen h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #555;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: #1a73e8;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #1557b0; }
+    .btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    /* Exam screen */
+    #exam-screen { display: none; }
+    .exam-header {
+      background: white;
+      border-radius: 12px;
+      padding: 16px 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 10px;
+      z-index: 10;
+    }
+    .student-name {
+      font-weight: 600;
+      color: #1a73e8;
+    }
+    .progress {
+      color: #666;
+      font-size: 0.9rem;
+    }
+    .timer {
+      font-weight: 700;
+      color: #e53935;
+      font-size: 1.1rem;
+    }
+
+    .question-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .question-number {
+      display: inline-block;
+      background: #1a73e8;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 32px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-right: 10px;
+    }
+    .question-text {
+      display: inline;
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .options {
+      margin-top: 16px;
+    }
+    .option {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      border: 2px solid #e8e8e8;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .option:hover {
+      border-color: #1a73e8;
+      background: #f0f7ff;
+    }
+    .option.selected {
+      border-color: #1a73e8;
+      background: #e3f0ff;
+    }
+    .option input[type="radio"] {
+      margin-right: 12px;
+      accent-color: #1a73e8;
+      width: 18px;
+      height: 18px;
+    }
+    .option-label {
+      font-weight: 600;
+      margin-right: 8px;
+      color: #1a73e8;
+    }
+
+    .submit-section {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .submit-section .btn {
+      max-width: 350px;
+      margin: 0 auto;
+      background: #2e7d32;
+    }
+    .submit-section .btn:hover { background: #1b5e20; }
+
+    .warning {
+      color: #e53935;
+      text-align: center;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+    }
+
+    /* Done screen */
+    #done-screen {
+      display: none;
+      text-align: center;
+      background: white;
+      border-radius: 12px;
+      padding: 60px 40px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: 80px auto;
+    }
+    #done-screen .checkmark {
+      font-size: 4rem;
+      margin-bottom: 16px;
+    }
+    #done-screen h2 {
+      color: #2e7d32;
+      margin-bottom: 12px;
+    }
+    #done-screen p {
+      color: #666;
+      font-size: 1.05rem;
+    }
+
+    /* Question navigation dots */
+    .nav-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .nav-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+      background: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+    .nav-dot.answered {
+      background: #1a73e8;
+      color: white;
+      border-color: #1a73e8;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 12px; }
+      #login-screen { padding: 24px; margin: 20px auto; }
+      .exam-header { flex-wrap: wrap; gap: 8px; }
+      .question-card { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📝 Yakuniy imtihon</h1>
+    <p class="subtitle">Tasodifiy 20 ta savol</p>
+
+    <!-- Login Screen -->
+    <div id="login-screen">
+      <h2>Imtihonga kirish</h2>
+      <div class="form-group">
+        <label for="firstName">Ism</label>
+        <input type="text" id="firstName" placeholder="Ismingizni kiriting" autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Familiya</label>
+        <input type="text" id="lastName" placeholder="Familiyangizni kiriting" autocomplete="off">
+      </div>
+      <button class="btn" id="startBtn" onclick="startExam()">Imtihonni boshlash</button>
+    </div>
+
+    <!-- Exam Screen -->
+    <div id="exam-screen">
+      <div class="exam-header">
+        <span class="student-name" id="studentName"></span>
+        <span class="progress" id="progressText"></span>
+        <span class="timer" id="timer"></span>
+      </div>
+      <div class="nav-dots" id="navDots"></div>
+      <div id="questionsContainer"></div>
+      <div class="submit-section">
+        <p class="warning" id="submitWarning"></p>
+        <button class="btn" id="submitBtn" onclick="submitExam()">Javoblarni yuborish</button>
+      </div>
+    </div>
+
+    <!-- Done Screen -->
+    <div id="done-screen">
+      <div class="checkmark">✅</div>
+      <h2>Javoblaringiz qabul qilindi!</h2>
+      <p>Imtihon muvaffaqiyatli yakunlandi. Natijalar o'qituvchi tomonidan tekshiriladi.</p>
+    </div>
+  </div>
+
+  <script>
+    let sessionId = null;
+    let examQuestions = [];
+    let answers = {};
+    let timerInterval = null;
+    let startTime = null;
+
+    function startExam() {
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+
+      if (!firstName || !lastName) {
+        alert("Iltimos, ism va familiyangizni kiriting!");
+        return;
+      }
+
+      const btn = document.getElementById('startBtn');
+      btn.disabled = true;
+      btn.textContent = "Yuklanmoqda...";
+
+      fetch('/api/start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName, lastName })
+      })
+      .then(r => r.json())
+      .then(data => {
+        sessionId = data.sessionId;
+        examQuestions = data.questions;
+        answers = {};
+
+        document.getElementById('studentName').textContent = firstName + ' ' + lastName;
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('exam-screen').style.display = 'block';
+
+        renderQuestions();
+        startTimer();
+        updateProgress();
+      })
+      .catch(err => {
+        alert("Xatolik yuz berdi. Qaytadan urinib ko'ring.");
+        btn.disabled = false;
+        btn.textContent = "Imtihonni boshlash";
+      });
+    }
+
+    function renderQuestions() {
+      const container = document.getElementById('questionsContainer');
+      const dotsContainer = document.getElementById('navDots');
+      container.innerHTML = '';
+      dotsContainer.innerHTML = '';
+
+      examQuestions.forEach((q, idx) => {
+        // Nav dot
+        const dot = document.createElement('div');
+        dot.className = 'nav-dot';
+        dot.textContent = idx + 1;
+        dot.id = 'dot-' + q.id;
+        dot.onclick = () => document.getElementById('q-' + q.id).scrollIntoView({ behavior: 'smooth', block: 'center' });
+        dotsContainer.appendChild(dot);
+
+        // Question card
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.id = 'q-' + q.id;
+
+        let optionsHTML = '';
+        for (const [key, value] of Object.entries(q.options)) {
+          optionsHTML += `
+            <label class="option" id="opt-${q.id}-${key}" onclick="selectAnswer(${q.id}, '${key}')">
+              <input type="radio" name="q${q.id}" value="${key}">
+              <span class="option-label">${key})</span>
+              <span>${escapeHtml(value)}</span>
+            </label>
+          `;
+        }
+
+        card.innerHTML = `
+          <div>
+            <span class="question-number">${idx + 1}</span>
+            <span class="question-text">${escapeHtml(q.question)}</span>
+          </div>
+          <div class="options">${optionsHTML}</div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function selectAnswer(questionId, option) {
+      // Deselect previous
+      const options = document.querySelectorAll(`[id^="opt-${questionId}-"]`);
+      options.forEach(el => el.classList.remove('selected'));
+
+      // Select new
+      document.getElementById(`opt-${questionId}-${option}`).classList.add('selected');
+      answers[questionId] = option;
+
+      // Update nav dot
+      const dot = document.getElementById('dot-' + questionId);
+      dot.classList.add('answered');
+
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const answered = Object.keys(answers).length;
+      document.getElementById('progressText').textContent = `${answered}/20 javob berildi`;
+
+      if (answered < 20) {
+        document.getElementById('submitWarning').textContent =
+          `Diqqat: ${20 - answered} ta savolga hali javob berilmagan`;
+      } else {
+        document.getElementById('submitWarning').textContent = '';
+      }
+    }
+
+    function startTimer() {
+      startTime = Date.now();
+      timerInterval = setInterval(() => {
+        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+        const mins = Math.floor(elapsed / 60).toString().padStart(2, '0');
+        const secs = (elapsed % 60).toString().padStart(2, '0');
+        document.getElementById('timer').textContent = `⏱ ${mins}:${secs}`;
+      }, 1000);
+    }
+
+    function submitExam() {
+      const answered = Object.keys(answers).length;
+
+      if (answered === 0) {
+        alert("Kamida bitta savolga javob bering!");
+        return;
+      }
+
+      if (answered < 20) {
+        if (!confirm(`${20 - answered} ta savolga javob berilmagan. Shunga qaramay yuborasizmi?`)) {
+          return;
+        }
+      }
+
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = "Yuborilmoqda...";
+
+      fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionId, answers })
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.success) {
+          clearInterval(timerInterval);
+          document.getElementById('exam-screen').style.display = 'none';
+          document.getElementById('done-screen').style.display = 'block';
+        }
+      })
+      .catch(err => {
+        alert("Yuborishda xatolik. Qaytadan urinib ko'ring.");
+        btn.disabled = false;
+        btn.textContent = "Javoblarni yuborish";
+      });
+    }
+
+    // Prevent accidental page close during exam
+    window.addEventListener('beforeunload', (e) => {
+      if (sessionId && document.getElementById('exam-screen').style.display !== 'none') {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    });
+
+    // Allow Enter key to start
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && document.getElementById('login-screen').style.display !== 'none') {
+        startExam();
+      }
+    });
+  </script>
+</body>
+</html>

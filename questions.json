@@ -1,0 +1,453 @@
+[
+  {
+    "id": 1,
+    "question": "Sun'iy intellekt (AI) nima?",
+    "options": {
+      "A": "Kompyuter dasturlari majmuasi",
+      "B": "Inson fikrlashiga o'xshash tizimlar",
+      "C": "Internet orqali ishlovchi dastur",
+      "D": "Avtomatik ishlovchi robot"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 2,
+    "question": "Prompt nima?",
+    "options": {
+      "A": "Modelga beriladigan buyruq matni",
+      "B": "AI sozlamalari",
+      "C": "Dastur kodi",
+      "D": "Ma'lumotlar bazasi"
+    },
+    "correct": "A"
+  },
+  {
+    "id": 3,
+    "question": "Kling platformasining asosiy vazifasi:",
+    "options": {
+      "A": "Video generatsiya qilish",
+      "B": "Video montaj qilish",
+      "C": "Matn bilan ishlash",
+      "D": "Antivirus"
+    },
+    "correct": "A"
+  },
+  {
+    "id": 4,
+    "question": "Prompt aniqligi nimaga ta'sir qiladi?",
+    "options": {
+      "A": "Generatsiya tezligiga",
+      "B": "Natijaning aniqligi va sifati",
+      "C": "Model hajmiga",
+      "D": "Internet ishlashiga"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 5,
+    "question": "Text-to-image texnologiya:",
+    "options": {
+      "A": "Rasmni tahrirlash",
+      "B": "Matndan rasm yaratish",
+      "C": "Rasmni video qilish",
+      "D": "Rasmni analiz qilish"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 6,
+    "question": "Nano Banana qaysi turga kiradi?",
+    "options": {
+      "A": "Image generation modeli",
+      "B": "Video generation modeli",
+      "C": "Audio generation modeli",
+      "D": "Multimodal analiz modeli"
+    },
+    "correct": "A"
+  },
+  {
+    "id": 7,
+    "question": "Neyro fotosessiya nima?",
+    "options": {
+      "A": "AI orqali yaratilgan fotosuratlar",
+      "B": "Kamera orqali olingan suratlar",
+      "C": "Video kadrlar yig'indisi",
+      "D": "3D model yaratish"
+    },
+    "correct": "A"
+  },
+  {
+    "id": 8,
+    "question": "Text-to-video nima?",
+    "options": {
+      "A": "Videoni kesish",
+      "B": "Matndan video yaratish",
+      "C": "Videoni analiz qilish",
+      "D": "Videoni optimizatsiya qilish"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 9,
+    "question": "Sun'iy intellekt (AI) tushunchasiga eng to'g'ri ta'rif qaysi?",
+    "options": {
+      "A": "Kompyuter dasturlari orqali ma'lumotlarni faqat saqlash va uzatish tizimi",
+      "B": "Inson fikrlashiga o'xshash tarzda o'rganish, tahlil qilish va qaror qabul qilishga qodir tizim",
+      "C": "Internet orqali ishlovchi barcha avtomatik dasturlar yig'indisi",
+      "D": "Faqat robototexnika sohasida ishlatiladigan texnologiya"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 10,
+    "question": "Prompt tushunchasining to'g'ri izohi qaysi?",
+    "options": {
+      "A": "AI model ichidagi algoritmlar to'plami va texnik sozlamalar",
+      "B": "Foydalanuvchi tomonidan AI ga beriladigan topshiriq yoki yo'riqnoma matni",
+      "C": "Internet orqali yuboriladigan ma'lumot paketlari tizimi",
+      "D": "AI tomonidan avtomatik yaratiladigan javoblar ketma-ketligi"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 11,
+    "question": "Gemini platformasining asosiy xususiyati nimada?",
+    "options": {
+      "A": "Faqat matn generatsiya qilishga mo'ljallangan oddiy chatbot",
+      "B": "Matn, rasm va boshqa formatlar bilan ishlay oladigan multimodal AI tizimi",
+      "C": "Faqat video montaj qilish uchun ishlab chiqilgan dastur",
+      "D": "Internet brauzer sifatida ishlaydigan AI tizim"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 12,
+    "question": "Kling platformasining asosiy vazifasi qaysi variantda to'g'ri berilgan?",
+    "options": {
+      "A": "Tayyor videolarni kesish va montaj qilish uchun mo'ljallangan editor",
+      "B": "Matndan yoki tasvirdan foydalangan holda video generatsiya qilish platformasi",
+      "C": "Audio fayllarni qayta ishlash va tozalash tizimi",
+      "D": "Faqat animatsiya dizaynini qo'lda yaratish dasturi"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 13,
+    "question": "Promptni aniq va batafsil yozish natijaga qanday ta'sir qiladi?",
+    "options": {
+      "A": "Faqat generatsiya tezligini oshiradi, lekin sifatga ta'sir qilmaydi",
+      "B": "Natijaning aniqligi va model tomonidan to'g'ri tushunilish darajasini oshiradi",
+      "C": "Model ishlashini sekinlashtirib, natijani yomonlashtiradi",
+      "D": "Faqat internet tezligiga bog'liq natija beradi"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 14,
+    "question": "Nano Banana qaysi turdagi AI vositalariga kiradi?",
+    "options": {
+      "A": "Video generatsiya qilishga ixtisoslashgan model",
+      "B": "Rasm yaratishga mo'ljallangan image generation modeli",
+      "C": "Ovoz generatsiya qiluvchi audio modeli",
+      "D": "Ma'lumotlarni analiz qiluvchi tizim"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 15,
+    "question": "Neyro fotosessiya tushunchasi nimani anglatadi?",
+    "options": {
+      "A": "Kamera yordamida olingan oddiy fotosuratlar to'plami",
+      "B": "AI orqali generatsiya qilingan yoki qayta ishlangan fotosuratlar",
+      "C": "Videodan ajratib olingan kadrlar",
+      "D": "3D modellardan tayyorlangan grafik tasvirlar"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 16,
+    "question": "Text-to-speech (TTS) texnologiyasi qanday ishlaydi?",
+    "options": {
+      "A": "Ovozlarni yozib olish va saqlash orqali ishlaydi",
+      "B": "Matnni sun'iy intellekt yordamida ovozga aylantiradi",
+      "C": "Audio fayllarni kesib tahrirlash imkonini beradi",
+      "D": "Ovoz sifatini avtomatik oshiradi"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 17,
+    "question": "ElevenLabs platformasining asosiy xususiyati nimada?",
+    "options": {
+      "A": "Video generatsiya qilish va montaj qilish",
+      "B": "Realistik ovoz yaratish va ovoz klonlash texnologiyasi",
+      "C": "Rasm generatsiya qilish tizimi",
+      "D": "Kod yozish uchun AI yordamchi"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 18,
+    "question": "Ovoz klonlash (voice cloning) nimani anglatadi?",
+    "options": {
+      "A": "Yangi ovoz yozib olish jarayoni",
+      "B": "Mavjud ovozni AI orqali nusxalab qayta yaratish",
+      "C": "Ovoz sifatini tozalash va filtrlash",
+      "D": "Audio fayllarni qisqartirish"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 19,
+    "question": "Suno AI platformasi nimaga ixtisoslashgan?",
+    "options": {
+      "A": "Audio fayllarni tahrirlash va kesish",
+      "B": "AI yordamida qo'shiq va musiqa generatsiya qilish",
+      "C": "Video montaj qilish",
+      "D": "Rasm yaratish"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 20,
+    "question": "Heygen platformasining asosiy vazifasi qaysi?",
+    "options": {
+      "A": "Rasm generatsiya qilish",
+      "B": "AI avatar orqali video yaratish va gapirtirish",
+      "C": "Audio yozish va tahrirlash",
+      "D": "Kod yozish"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 21,
+    "question": "Lipsync texnologiyasi nimani anglatadi?",
+    "options": {
+      "A": "Video kesish va montaj qilish",
+      "B": "Ovoz va lab harakatini moslashtirish",
+      "C": "Ovoz yozish",
+      "D": "Kamera sozlash"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 22,
+    "question": "AI avatar tushunchasi nimani bildiradi?",
+    "options": {
+      "A": "Oddiy profil rasmi",
+      "B": "AI orqali yaratilgan virtual inson modeli",
+      "C": "Video fayl turi",
+      "D": "Audio yozuv"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 23,
+    "question": "Gamma AI qanday vazifani bajaradi?",
+    "options": {
+      "A": "Video generatsiya qilish",
+      "B": "Dizaynli prezentatsiyalar yaratish",
+      "C": "Audio yozish",
+      "D": "Kod yozish"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 24,
+    "question": "Hook tushunchasi nimani anglatadi?",
+    "options": {
+      "A": "Kontent oxiridagi xulosa qismi",
+      "B": "Kontent boshida tomoshabinni darhol jalb qiluvchi element",
+      "C": "Videodagi texnik sozlamalar",
+      "D": "Audio effektlar yig'indisi"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 25,
+    "question": "Kuchli hook qanday xususiyatga ega bo'ladi?",
+    "options": {
+      "A": "Uzun va batafsil tushuntirish beradi",
+      "B": "Oddiy va umumiy gapdan iborat bo'ladi",
+      "C": "Tomoshabinni to'xtatib, qiziqish uyg'otadi",
+      "D": "Faqat musiqa bilan boshlanadi"
+    },
+    "correct": "C"
+  },
+  {
+    "id": 26,
+    "question": "Lovable platformasi qanday turga kiradi?",
+    "options": {
+      "A": "Video montaj dasturi",
+      "B": "Website builder platforma",
+      "C": "Audio yozish dasturi",
+      "D": "Kod kompilyatori"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 27,
+    "question": "Domen nima?",
+    "options": {
+      "A": "Kompyuter modeli",
+      "B": "Saytning internetdagi manzili",
+      "C": "Video fayl turi",
+      "D": "Dastur kodi"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 28,
+    "question": "Iteratsiya (iteration) nima?",
+    "options": {
+      "A": "Bir martalik generatsiya",
+      "B": "Rasm generatsiya",
+      "C": "Prompt yozganda natijani qayta-qayta yaxshilash jarayoni",
+      "D": "Kod yozish"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 29,
+    "question": "Prompt engineering nimani anglatadi?",
+    "options": {
+      "A": "Kod yozish",
+      "B": "AI uchun samarali prompt yozish san'ati",
+      "C": "Video montaj",
+      "D": "Audio yozish"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 30,
+    "question": "AI model natijasini yaxshilashning eng to'g'ri yo'li:",
+    "options": {
+      "A": "Promptni iteratsiya qilib yaxshilash",
+      "B": "Har safar bir xil prompt berish",
+      "C": "Internet tezligini oshirish",
+      "D": "Ranglarni o'zgartirish"
+    },
+    "correct": "A"
+  },
+  {
+    "id": 31,
+    "question": "Kontentda \"call to action\" (CTA) nimani anglatadi?",
+    "options": {
+      "A": "Rang tanlash",
+      "B": "Tomoshabinni aniq harakatga chaqirish",
+      "C": "Video uzunligini belgilash",
+      "D": "Audio sozlash"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 32,
+    "question": "ChatGPT qanday model hisoblanadi?",
+    "options": {
+      "A": "Faqat rasm generatsiya qiluvchi model",
+      "B": "Antivirus tizimi",
+      "C": "Matn asosida ishlovchi va dialog yurituvchi til modeli",
+      "D": "Faqat video montaj dasturi"
+    },
+    "correct": "C"
+  },
+  {
+    "id": 33,
+    "question": "Google Gemini ning boshqa AI'larga nisbatan ustunligi nimada?",
+    "options": {
+      "A": "Faqat matn yozadi",
+      "B": "Faqat kod yozadi",
+      "C": "Bir nechta format (matn, rasm, fayl) bilan ishlay oladi",
+      "D": "Faqat video generatsiya qiladi"
+    },
+    "correct": "C"
+  },
+  {
+    "id": 34,
+    "question": "ChatGPT'da uzun prompt yozish har doim yaxshi natija beradimi?",
+    "options": {
+      "A": "Ha, har doim",
+      "B": "Yo'q, aniqlik muhimroq",
+      "C": "Faqat ingliz tilida bo'lsa",
+      "D": "Faqat qisqa bo'lsa"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 35,
+    "question": "ChatGPT'dan aniq natija olish uchun eng to'g'ri yondashuv qaysi?",
+    "options": {
+      "A": "Juda uzun, chalkash prompt yozish",
+      "B": "Faqat bitta so'z yozish",
+      "C": "Aniq va strukturalangan prompt yozish",
+      "D": "Faqat savol yozish"
+    },
+    "correct": "C"
+  },
+  {
+    "id": 36,
+    "question": "LLM modellarida \"Gallyusinatsiya\" (Hallucination) deganda nima tushuniladi?",
+    "options": {
+      "A": "Modelning juda tez javob berishi",
+      "B": "Modelning mavjud bo'lmagan ma'lumotni ishonch bilan to'qib chiqarishi",
+      "C": "Modelning foydalanuvchini haqorat qilishi",
+      "D": "Modelning rasm chizishdan bosh tortishi"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 37,
+    "question": "Kling AI platformasida \"Image-to-Video\" funksiyasi qanday ishlaydi?",
+    "options": {
+      "A": "Videoni rasmga aylantiradi",
+      "B": "Yuklangan rasmga harakat bag'ishlaydi",
+      "C": "Rasm ichidagi matnlarni tarjima qiladi",
+      "D": "Faqat rasmni sifatini oshiradi"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 38,
+    "question": "Omni Human nima uchun ishlatiladi?",
+    "options": {
+      "A": "Website qilish",
+      "B": "O'yin yaratish",
+      "C": "Lipsync video",
+      "D": "Email yuborish"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 39,
+    "question": "ChatGPT'da \"context berish\" nimaga yordam beradi?",
+    "options": {
+      "A": "Faqat tezlikni oshiradi",
+      "B": "Modelga vaziyatni yaxshiroq tushuntiradi",
+      "C": "Internetni tezlashtiradi",
+      "D": "Rangni o'zgartiradi"
+    },
+    "correct": "B"
+  },
+  {
+    "id": 40,
+    "question": "AI platformalarda eng katta xato:",
+    "options": {
+      "A": "Rang tanlash",
+      "B": "Internet tezligi",
+      "C": "Noto'g'ri prompt yozish",
+      "D": "Kod yozish"
+    },
+    "correct": "C"
+  },
+  {
+    "id": 41,
+    "question": "ChatGPT'da strukturali javob olish uchun:",
+    "options": {
+      "A": "Rang yozish",
+      "B": "Audio qo'shish",
+      "C": "Internetni o'chirish",
+      "D": "Format (list, table) so'rash"
+    },
+    "correct": "B"
+  }
+]

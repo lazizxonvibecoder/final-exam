@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natijalar - Admin</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      padding: 20px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1 { color: #1a73e8; margin-bottom: 20px; }
+    .refresh-btn {
+      padding: 10px 20px;
+      background: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+    .refresh-btn:hover { background: #1557b0; }
+    .stats {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      font-size: 1.1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #eee; }
+    th { background: #1a73e8; color: white; font-weight: 600; }
+    tr:hover { background: #f5f8ff; }
+    .view-btn {
+      padding: 6px 16px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    .view-btn:hover { background: #1b5e20; }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 100;
+      overflow-y: auto;
+    }
+    .modal {
+      background: white;
+      max-width: 750px;
+      margin: 40px auto;
+      border-radius: 12px;
+      padding: 30px;
+      position: relative;
+    }
+    .modal h2 { margin-bottom: 16px; color: #1a73e8; }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #999;
+    }
+    .answer-row {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 8px;
+    }
+    .answer-row .q-text { font-weight: 600; margin-bottom: 6px; }
+    .answer-row .student-answer {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #e3f0ff;
+      border-radius: 6px;
+      font-weight: 600;
+      color: #1a73e8;
+    }
+    .answer-row .option-text { color: #555; margin-left: 8px; }
+    .no-answer { color: #e53935; font-style: italic; }
+    .answer-correct {
+      border-left: 4px solid #2e7d32;
+      background: #f1f8e9;
+    }
+    .answer-wrong {
+      border-left: 4px solid #e53935;
+      background: #fef0f0;
+    }
+    .answer-no {
+      border-left: 4px solid #ff9800;
+      background: #fff8e1;
+    }
+    .correct-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #e8f5e9;
+      border-radius: 6px;
+      font-weight: 600;
+      color: #2e7d32;
+      margin-left: 8px;
+    }
+    .wrong-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #ffebee;
+      border-radius: 6px;
+      font-weight: 600;
+      color: #e53935;
+      margin-left: 8px;
+    }
+    .score-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+    }
+    .score-high { background: #e8f5e9; color: #2e7d32; }
+    .score-mid { background: #fff8e1; color: #f57f17; }
+    .score-low { background: #ffebee; color: #e53935; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Talabalar natijalari</h1>
+    <button class="refresh-btn" onclick="loadResults()">🔄 Yangilash</button>
+    <div class="stats" id="stats"></div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Familiya</th>
+          <th>Ism</th>
+          <th>Topshirilgan vaqt</th>
+          <th>Javoblar</th>
+          <th>Ball</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="resultsBody"></tbody>
+    </table>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" id="modalContent"></div>
+  </div>
+
+  <script>
+    let allResults = [];
+
+    function loadResults() {
+      fetch('/api/admin/results')
+        .then(r => r.json())
+        .then(data => {
+          allResults = data;
+          document.getElementById('stats').textContent =
+            `Jami topshirgan talabalar: ${data.length}`;
+          renderTable(data);
+        });
+    }
+
+    function renderTable(data) {
+      const tbody = document.getElementById('resultsBody');
+      tbody.innerHTML = '';
+      data.forEach((r, i) => {
+        const time = new Date(r.submitTime).toLocaleString('uz-UZ');
+        const score = r.score !== undefined && r.score !== '-' ? r.score : '-';
+        const scoreColor = score === '-' ? '' : (score >= 14 ? 'color:#2e7d32;font-weight:700' : score >= 10 ? 'color:#f57f17;font-weight:700' : 'color:#e53935;font-weight:700');
+        tbody.innerHTML += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${escapeHtml(r.lastName)}</td>
+            <td>${escapeHtml(r.firstName)}</td>
+            <td>${time}</td>
+            <td>${r.answeredCount}/20</td>
+            <td style="${scoreColor}">${score}/20</td>
+            <td><button class="view-btn" onclick="viewDetail('${escapeHtml(r.file)}')">Ko'rish</button></td>
+          </tr>
+        `;
+      });
+    }
+
+    function viewDetail(filename) {
+      fetch('/api/admin/results/' + encodeURIComponent(filename))
+        .then(r => r.json())
+        .then(data => {
+          const score = data.score !== undefined ? data.score : '-';
+          const scoreClass = score === '-' ? '' : (score >= 14 ? 'score-high' : score >= 10 ? 'score-mid' : 'score-low');
+          let html = `
+            <button class="modal-close" onclick="document.getElementById('modalOverlay').style.display='none'">&times;</button>
+            <h2>${escapeHtml(data.firstName)} ${escapeHtml(data.lastName)}</h2>
+            <p style="color:#666;margin-bottom:8px;">Topshirilgan: ${new Date(data.submitTime).toLocaleString('uz-UZ')}</p>
+            <div class="score-badge ${scoreClass}">Natija: ${score}/20</div>
+          `;
+          data.answers.forEach((a, i) => {
+            const isAnswered = a.studentAnswer !== 'Javob berilmagan';
+            const rowClass = !isAnswered ? 'answer-no' : (a.isCorrect ? 'answer-correct' : 'answer-wrong');
+            html += `
+              <div class="answer-row ${rowClass}">
+                <div class="q-text">${i + 1}. ${escapeHtml(a.question)}</div>
+                <div>
+                  ${isAnswered
+                    ? `<span class="student-answer">${a.studentAnswer}</span>
+                       <span class="option-text">${escapeHtml(a.options[a.studentAnswer] || '')}</span>
+                       ${a.isCorrect
+                         ? '<span class="correct-badge">✓ To\'g\'ri</span>'
+                         : '<span class="wrong-badge">✗ Noto\'g\'ri</span> <span class="correct-badge">To\'g\'ri: ' + a.correctAnswer + '</span>'}`
+                    : `<span class="no-answer">Javob berilmagan</span> <span class="correct-badge">To'g'ri: ${a.correctAnswer}</span>`}
+                </div>
+                <div style="margin-top:6px;font-size:0.85rem;color:#888;">
+                  A) ${escapeHtml(a.options.A)} &nbsp; B) ${escapeHtml(a.options.B)} &nbsp; C) ${escapeHtml(a.options.C)} &nbsp; D) ${escapeHtml(a.options.D)}
+                </div>
+              </div>
+            `;
+          });
+          document.getElementById('modalContent').innerHTML = html;
+          document.getElementById('modalOverlay').style.display = 'block';
+        });
+    }
+
+    function closeModal(e) {
+      if (e.target === document.getElementById('modalOverlay')) {
+        document.getElementById('modalOverlay').style.display = 'none';
+      }
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    loadResults();
+  </script>
+</body>
+</html>
