@@ -170,8 +170,9 @@
   <script>
     let allResults = [];
 
+    const BACKEND_URL = 'https://final-exam-production-b963.up.railway.app';
     function loadResults() {
-      fetch('/api/admin/results')
+      fetch(BACKEND_URL + '/api/admin/results')
         .then(r => r.json())
         .then(data => {
           allResults = data;
@@ -203,7 +204,7 @@
     }
 
     function viewDetail(filename) {
-      fetch('/api/admin/results/' + encodeURIComponent(filename))
+      fetch(BACKEND_URL + '/api/admin/results/' + encodeURIComponent(filename))
         .then(r => r.json())
         .then(data => {
           const score = data.score !== undefined ? data.score : '-';
